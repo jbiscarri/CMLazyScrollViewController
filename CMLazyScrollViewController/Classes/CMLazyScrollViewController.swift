@@ -198,7 +198,6 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
         if let delegate = delegate {
             
             pageSize = view.frame.size
-¡
             numberOfViews = delegate.numberOfViewControllersIn(scrollViewController: self)
             pageControl.numberOfElements = numberOfViews
             if infinite == true {
