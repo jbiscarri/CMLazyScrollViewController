@@ -193,6 +193,25 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
             updateCarousel()
         }
     }
+    //Adding new images to carousel without changing current page
+    public func addNewImages() {
+        if let delegate = delegate {
+            
+            pageSize = view.frame.size
+¡
+            numberOfViews = delegate.numberOfViewControllersIn(scrollViewController: self)
+            pageControl.numberOfElements = numberOfViews
+            if infinite == true {
+                numberOfViews += 2
+            }
+            
+            let width = (scrollDirection == .Horizontal) ? CGFloat(numberOfViews)*pageSize.width : pageSize.width
+            let height = (scrollDirection == .Horizontal) ? pageSize.height : CGFloat(numberOfViews)*pageSize.height
+            scrollView.contentSize = CGSize(width: width, height: height)
+            viewControllers = Array(repeating: nil, count: numberOfViews)
+            views = Array(repeating: nil, count: numberOfViews)            
+        }
+    }
 
     // MARK: - PRIVATE FUNCTIONS
     fileprivate func requestAndAddViewControllerAt(index : Int) {

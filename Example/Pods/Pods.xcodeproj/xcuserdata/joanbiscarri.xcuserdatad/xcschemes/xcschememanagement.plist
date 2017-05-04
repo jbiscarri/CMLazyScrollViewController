@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>CMLazyScrollViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>CMPageControl.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Pods-CMLazyScrollViewController_Example.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-CMLazyScrollViewController_Tests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>264B02214184FDD34A5734F7776BDBC1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6CB4A225E0DD15C229EC0BB93916E7EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9E29761910F81696F4C2A49E10D05BC8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BABAE1DA34FE12A042F973AFE96B9FD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
