@@ -30,6 +30,8 @@ public enum CMLazyScrollViewDirection {
 public protocol CMLazyScrollViewControllerDelegate : class {
     func numberOfViewControllersIn(scrollViewController : CMLazyScrollViewController) -> Int
     func viewControllerIn(scrollViewController : CMLazyScrollViewController, atIndex: Int) -> UIViewController
+    func loadedViewController(scrollViewController : CMLazyScrollViewController, atIndex: Int)
+
 }
 
 public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate {
@@ -227,6 +229,7 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
         views[index] = view
         viewControllers[index] = vc
         vc.didMove(toParentViewController: self)
+        delegate?.loadedViewController(scrollViewController: self, atIndex: index)
     }
 
     fileprivate func fixIndex(index : Int) -> Int {
