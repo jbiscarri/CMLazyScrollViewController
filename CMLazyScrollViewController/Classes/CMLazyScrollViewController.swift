@@ -224,6 +224,7 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
         let view = UIView(frame: CGRect(x: x, y: y, width: pageSize.width, height: pageSize.height))
         view.tag = index
         view.addSubview(vc.view)
+        vc.view.backgroundColor = .clear
 
         scrollView.addSubview(view)
         views[index] = view
