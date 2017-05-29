@@ -37,6 +37,7 @@ public protocol CMLazyScrollViewControllerDelegate : class {
 public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate {
 
     // MARK: - PageControl Constraints
+    var fullScreen = false
     fileprivate var currentPageControlConstraints : [NSLayoutConstraint] = []
     @IBOutlet fileprivate var pageControlBottomConstraint : NSLayoutConstraint!
 
@@ -488,7 +489,7 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
         pageSize = view.frame.size
         let width = (scrollDirection == .Horizontal) ? CGFloat(numberOfViews)*pageSize.width : pageSize.width
         let height = (scrollDirection == .Horizontal) ? pageSize.height : CGFloat(numberOfViews)*pageSize.height
-        scrollView.contentSize = CGSize(width: width, height: height)
+        scrollView.contentSize = CGSize(width: width, height: height - 20)
 
         for view in views {
             if let view = view {
