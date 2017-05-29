@@ -39,6 +39,12 @@ class ViewController: UIViewController, CMLazyScrollViewControllerDelegate, UISc
     }
 
     // MARK: CMLazyScrollViewControllerDelegate
+    
+    func loadedViewController(scrollViewController : CMLazyScrollViewController, atIndex: Int) {
+    }
+
+    
+    
     func numberOfViewControllersIn(scrollViewController: CMLazyScrollViewController) -> Int {
         return 5
     }

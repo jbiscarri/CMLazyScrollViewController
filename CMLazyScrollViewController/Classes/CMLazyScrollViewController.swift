@@ -72,8 +72,12 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
     // PROPERTIES AND GETTER/SETTER
     // used to set the current page with animation or not
     public func setCurrentPage(newValue : Int, animated : Bool) {
-        let x = (scrollDirection == .Horizontal) ? CGFloat(newValue)*pageSize.width : 0
-        let y = (scrollDirection == .Horizontal) ? 0 : CGFloat(newValue)*pageSize.height
+        setCurrentPage(newValue: newValue, animated: animated, offset : 0)
+    }
+    
+    public func setCurrentPage(newValue : Int, animated : Bool, offset : CGFloat) {
+        let x = (scrollDirection == .Horizontal) ? CGFloat(newValue)*pageSize.width - offset : 0
+        let y = (scrollDirection == .Horizontal) ? 0 : CGFloat(newValue)*pageSize.height - offset
         scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: pageSize.width, height: pageSize.height), animated: animated)
         currentIndex = newValue
     }
