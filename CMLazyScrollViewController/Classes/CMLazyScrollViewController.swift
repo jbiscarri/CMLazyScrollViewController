@@ -78,7 +78,12 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
     public func setCurrentPage(newValue : Int, animated : Bool, offset : CGFloat) {
         let x = (scrollDirection == .Horizontal) ? CGFloat(newValue)*pageSize.width - offset : 0
         let y = (scrollDirection == .Horizontal) ? 0 : CGFloat(newValue)*pageSize.height - offset
-        scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: pageSize.width, height: pageSize.height), animated: animated)
+        if animated {
+            scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: pageSize.width, height: pageSize.height), animated: animated)
+        } else {
+            scrollView.contentOffset = CGPoint(x: x, y: y)
+        }
+        
         currentIndex = newValue
     }
 
