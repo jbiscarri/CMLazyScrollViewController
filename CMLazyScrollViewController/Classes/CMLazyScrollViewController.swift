@@ -415,6 +415,7 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.y = 0.0
         let page = (scrollDirection == .Horizontal) ? (scrollView.contentOffset.x + (0.5 * pageSize.width)) / pageSize.width : (scrollView.contentOffset.y + (0.5 * pageSize.height)) / pageSize.height
 
         currentIndex = Int(page)
@@ -498,7 +499,7 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
         pageSize = view.frame.size
         let width = (scrollDirection == .Horizontal) ? CGFloat(numberOfViews)*pageSize.width : pageSize.width
         let height = (scrollDirection == .Horizontal) ? pageSize.height : CGFloat(numberOfViews)*pageSize.height
-        scrollView.contentSize = CGSize(width: width, height: height - 20)
+        scrollView.contentSize = CGSize(width: width, height: height)
 
         for view in views {
             if let view = view {
