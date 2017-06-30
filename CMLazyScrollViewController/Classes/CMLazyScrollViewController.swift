@@ -217,30 +217,31 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
     fileprivate func requestAndAddViewControllerAt(index : Int) {
         let fixedIndex = fixIndex(index: index)
         var vc : UIViewController!
+        if viewControllers.count > index {
+            if viewControllers[index] != nil {
+                vc = viewControllers[index]!
+            } else {
+                vc = delegate?.viewControllerIn(scrollViewController: self, atIndex: fixedIndex) ?? UIViewController()
+            }
 
-        if viewControllers[index] != nil {
-            vc = viewControllers[index]!
-        } else {
-            vc = delegate?.viewControllerIn(scrollViewController: self, atIndex: fixedIndex) ?? UIViewController()
+            // force frame to the size of a page
+            vc.view.frame = CGRect(x: 0.0, y: 0.0, width: pageSize.width, height: pageSize.height)
+            addChildViewController(vc)
+
+            let x : CGFloat = (scrollDirection == .Horizontal) ? CGFloat(index)*pageSize.width : 0.0
+            let y : CGFloat = (scrollDirection == .Horizontal) ? 0.0 : CGFloat(index)*pageSize.height
+            // TODO: if i dont use a view here the constraint from the vc.view will break because of the scrollView, i tried to do some autolayout with the views i added but no success :(
+            let view = UIView(frame: CGRect(x: x, y: y, width: pageSize.width, height: pageSize.height))
+            view.tag = index
+            view.addSubview(vc.view)
+            vc.view.backgroundColor = .clear
+
+            scrollView.addSubview(view)
+            views[index] = view
+            viewControllers[index] = vc
+            vc.didMove(toParentViewController: self)
+            delegate?.loadedViewController(scrollViewController: self, atIndex: index)
         }
-
-        // force frame to the size of a page
-        vc.view.frame = CGRect(x: 0.0, y: 0.0, width: pageSize.width, height: pageSize.height)
-        addChildViewController(vc)
-
-        let x : CGFloat = (scrollDirection == .Horizontal) ? CGFloat(index)*pageSize.width : 0.0
-        let y : CGFloat = (scrollDirection == .Horizontal) ? 0.0 : CGFloat(index)*pageSize.height
-        // TODO: if i dont use a view here the constraint from the vc.view will break because of the scrollView, i tried to do some autolayout with the views i added but no success :(
-        let view = UIView(frame: CGRect(x: x, y: y, width: pageSize.width, height: pageSize.height))
-        view.tag = index
-        view.addSubview(vc.view)
-        vc.view.backgroundColor = .clear
-
-        scrollView.addSubview(view)
-        views[index] = view
-        viewControllers[index] = vc
-        vc.didMove(toParentViewController: self)
-        delegate?.loadedViewController(scrollViewController: self, atIndex: index)
     }
 
     fileprivate func fixIndex(index : Int) -> Int {
