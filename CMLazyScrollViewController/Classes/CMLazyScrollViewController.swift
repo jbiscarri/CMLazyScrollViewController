@@ -289,12 +289,14 @@ public class CMLazyScrollViewController : UIViewController, UIScrollViewDelegate
 
     // clean specific slot in array
     fileprivate func clearSlot(index : Int) {
-        if let vc = viewControllers[index], let _ = views[index] {
-            vc.view.removeFromSuperview()
-            vc.removeFromParentViewController()
-            if isLazy == true {
-                viewControllers[index] = nil
-                views[index] = nil
+        if viewControllers.count > index {
+            if let vc = viewControllers[index], let _ = views[index] {
+                vc.view.removeFromSuperview()
+                vc.removeFromParentViewController()
+                if isLazy == true {
+                    viewControllers[index] = nil
+                    views[index] = nil
+                }
             }
         }
     }
